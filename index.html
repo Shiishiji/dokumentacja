@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<!-- META -->
+	<title>DOCUMENTATION</title>
+	<meta charset="utf-8"/>
+	<meta name="keywords" content="documentation, programming language"/>
+	<meta name="author" content="Damian Szopiński"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+<!-- MDL -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_green-orange.min.css" /> 
+<!-- OVERWRITES -->
+	<style>
+		.content {
+			padding-top: 100px;
+		}
+		input {
+			width: 70vw;
+		}
+	</style>
+</head>
+<body ng-app="app">
+<!-- CONTAINER -->
+<div class="mdl-layout mdl-js-layout">
+	<!-- header and drawer container -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"> 
+		<!-- HEADER -->
+		<header class="mdl-layout__header mdl-layout__header--scroll ">
+			<div class="mdl-layout__header-row">
+				<div class="mdl-layout-spacer"></div>
+				<span class="mdl-list">
+					<div class="mdl-list__item">
+						<span class="mdl-list__item-primary-content">
+							<i class="material-icons mdl-list__item-avatar">polymer</i>
+							<span class="mdl-layout-title">Programming language</span>
+						</span>
+					</div>
+					
+				</span>
+				
+			</div>
+		</header>
+		
+		<!-- DRAWER -->
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Documentation</span>
+			<nav class="mdl-navigation">
+				<div ng-repeat="nav in [
+				{
+					'title':'Go back to our github!',
+					'href':'https://github.com/shiishiji'
+				},
+				{
+					'title':'Check out our facebook!',
+					'href':'https://facebook.com'
+				},
+				{
+					'title':'Ask some questions!',
+					'href':'https://stackoverflow.com'
+				}
+				]">
+					<a class="mdl-navigation__link" href="{{ nav.href }}">{{ nav.title }}</a>
+				</div>
+			</nav>
+		</div>
+	
+	</div> <!-- end of header and drawer container -->
+	<!-- CONTENT -->
+	<div class="content">
+		<main class="mdl-layout__content" >
+			<div class="mdl-grid">
+				<div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone mdl-cell--2-offset-desktop" ng-controller="main">
+					<p>
+						<input type="text" placeholder="Search" ng-model="searchbar">
+					</p>
+					<div>
+						<div class="mdl-cell mdl-cell--12-col" ng-repeat="doc in docs | filter : searchbar">
+							<h4>{{doc.title}}</h4>
+							<p>{{doc.text}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- FOOTER -->
+		<footer class="mdl-mini-footer">
+			<div class="mdl-logo">Documentation for a programming language</div>
+			<div class="mdl-spacer"></div>
+			<div class="mdl-spacer"></div>
+			<div class="mdl-spacer"></div>
+			<ul class="mdl-mini-footer__link-list">
+				<li ng-repeat="link in [
+				{
+					name: 'Facebook',
+					link: 'facebook.com'
+				},
+				{
+					name: 'Twitter',
+					link: 'twitter.com'
+				},
+				{
+					name: 'Github',
+					link: 'github.com'
+				}
+			]"><a href="https://{{link.link}}">{{link.name}}</a></li>
+			</ul>
+		</footer>
+	</div>
+</div>
+
+<!-- ANGULAR -->
+	<script src="angular.min.js"></script>
+	<!-- CONTROLLERS -->
+		<script src="controllers/main.js"></script>
+<!-- MDL -->
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+</html>
